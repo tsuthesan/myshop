@@ -1,8 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
+//use Illuminate\Support\Facades\DB;
+//use App\Profile;
+//Use App\user;
+//use Auth;
+
 
 class HomeController extends Controller
 {
@@ -23,6 +27,16 @@ class HomeController extends Controller
      */
     public function index()
     {
+//        $user_id = Auth::user()->id;
+//        $profile = DB::table('users')
+//                   ->join('profiles', 'users.id','= ','profiles.user_id')
+//                   ->select('users.*', 'profiles.*')
+//                   ->where(['profiles.user_id' => $user_id])
+//                   ->get();
+//
+//         return $profile;
+//        exit();
+
         return view('home');
     }
 }

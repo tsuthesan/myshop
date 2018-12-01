@@ -5,11 +5,12 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
+
                 <div class="card">
                     <div class="card-header">{{ __('Profile') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ url('/addProfile') }}">
+                        <form method="POST" action="{{ url('/addProfile') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group row">
@@ -41,7 +42,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label for="profile_pic" class="col-md-4 col-form-label text-md-right">{{ __('Enter Designation') }}</label>
+                                <label for="profile_pic" class="col-md-4 col-form-label text-md-right">{{ __('Profile Picture') }}</label>
 
                                 <div class="col-md-6">
                                     <input id="profile_pic" type="file" class="form-control{{ $errors->has('profile_pic') ? ' is-invalid' : '' }}" name="profile_pic" required>
