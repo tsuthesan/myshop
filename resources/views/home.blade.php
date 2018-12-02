@@ -28,7 +28,7 @@
                     <div class="col-md-4">
                         <img src="{{url('images/dummy.jpg' )}}" class="dummy" alt="" />
                     </div>
-                    <div class="col-md-4"></div>
+                    <div class="col-md-8"></div>
 
                 </div>
             </div>
