@@ -33,12 +33,10 @@ class HomeController extends Controller
                    ->join('profiles', 'users.id','=' ,'profiles.user_id')
                    ->select('users.*', 'profiles.*')
                    ->where(['profiles.user_id' => $user_id])
-                   ->get();
-//                   ->first();
-////
-         return $profile;
-        exit();
+                   ->first();
 
-        return view('home');
+
+
+        return view('home',['profile'=> $profile]);
     }
 }

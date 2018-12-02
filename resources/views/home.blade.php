@@ -26,8 +26,27 @@
 
                 <div class="card-body">
                     <div class="col-md-4">
-                        <img src="{{url('images/dummy.jpg' )}}" class="dummy" alt="" />
-                    </div>
+                        @if (!empty($profile))
+                            <img src="{{ $profile->profile_pic }}" class="dummy" alt="" />
+                            @else
+                            <img src="{{url('images/dummy.jpg') }}" class="dummy" alt="" />
+
+                            @endif
+                            @if (!empty($profile))
+                                <p class="lead"> {{ $profile ->name }}</p>
+                            @else
+                                <p> </p>
+
+                            @endif
+
+                            @if (!empty($profile))
+                                <p class="lead"> {{ $profile ->designation }}</p>
+                            @else
+                                <p> </p>
+
+                            @endif
+
+                        </div>
                     <div class="col-md-8"></div>
 
                 </div>
