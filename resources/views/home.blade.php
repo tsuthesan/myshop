@@ -5,6 +5,13 @@
         max-width: 100px;
 
     }
+    #post{
+        float: right;
+    }
+    #pro{
+        float: left;
+    }
+
 
 </style>
 
@@ -21,13 +28,13 @@
             @if(session('response'))
                 <div class="alert alert-success">{{session('response')}}</div>
             @endif
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+                <div class="card">
+                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
-                    <div class="col-md-4">
-                        @if (!empty($profile))
-                            <img src="{{ $profile->profile_pic }}" class="dummy" alt="" />
+                  <div class="card-body">
+                      <div class="col-md-4"  id="pro">
+                         @if (!empty($profile))
+                            <img   src="{{ $profile->profile_pic }}" class="dummy" alt="" />
                             @else
                             <img src="{{url('images/dummy.jpg') }}" class="dummy" alt="" />
 
@@ -46,11 +53,35 @@
 
                             @endif
 
-                        </div>
-                    <div class="col-md-8"></div>
+                      </div>
+                      <div class="col-md-8" id="post">
+                          @if(count($posts) > 0 )
+                              @foreach($posts->all() as $post)
+                                  <h4>{{$post->post_title}}</h4>
+                                 <img align="middle"  class="img-thumbnail mx-auto d-block" src="{{$post->post_image}}" alt="" width="320px" height="215px">
+                                <p>{{ substr($post->post_body, 0, 150 ) }}</p>
 
+                              <ul class="nav nav-pills">
+                                  <li role="presentation">
+                                        <a href='{{url("/view/{$post->id}")}}'><span  class="far fa-eye">VIEW</span></a>
+                                  </li>
+                                  <li role="presentation">
+                                      <a href='{{url("/edit/{$post->id}")}}'><span class="far fa-edit">EDIT  </span></a>
+                                  </li>
+                                  <li role="presentation">
+                                      <a href='{{url("/delete/{$post->id}")}}'><span class="far fa-trash-alt">DELETE</span></a>
+                                  </li>
+                              </ul>
+
+                               <cite> Posted on: {{date ('M j, Y H:i', strtotime($post->updated_at))}}</cite>
+                                  <hr/>
+                              @endforeach
+                          @else
+                                <p> No Post Available! </p>
+                          @endif
+                    </div>
                 </div>
-            </div>
+         </div>
         </div>
     </div>
 </div>
