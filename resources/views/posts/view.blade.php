@@ -7,7 +7,7 @@
 
 
                 <div class="card">
-                    <div class="card-header">Post View </div>
+                    <div class="card-header text-center">Post View </div>
 
                     <div class="card-body">
                         <div class="col-md-4"  id="pro">

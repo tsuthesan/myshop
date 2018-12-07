@@ -14,8 +14,8 @@
                     <div class="alert alert-success">{{session('response')}}</div>
                 @endif
 
-                <div class="card text-center">
-                    <div class="card-header">{{ __('Category')}}</div>
+                <div class="card">
+                    <div class="card-header text-center">{{ __('Category')}}</div>
                     <div class="card-body">
                         <form method="POST" action="{{ url('/addCategory') }}">
                             @csrf

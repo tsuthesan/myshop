@@ -29,7 +29,7 @@
                 <div class="alert alert-success">{{session('response')}}</div>
             @endif
                 <div class="card">
-                 <div class="card-header">Dashboard</div>
+                 <div class="card-header text-center">Dashboard</div>
 
                   <div class="card-body">
                       <div class="col-md-4"  id="pro">
