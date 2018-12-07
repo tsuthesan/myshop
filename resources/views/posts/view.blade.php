@@ -11,7 +11,6 @@
 
                     <div class="card-body">
                         <div class="col-md-4"  id="pro">
-
                         </div>
                         <div class="col-md-8" id="post">
 

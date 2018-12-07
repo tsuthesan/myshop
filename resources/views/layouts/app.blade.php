@@ -34,9 +34,9 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-                        <li><a href="{{url('/home')}}">Home</a></li>
-                        <li><a href="{{url('/post')}}">Add Post</a></li>
+                    <ul class="nav nav-pills card-header-pills">
+                        <li class="nav-item"><a class="nav-link"  href="{{url('/home')}}">Home</a></li>
+                        <li class="nav-item"><a  class="nav-link"  href="{{url('/post')}}">Add Post</a></li>
 
                     </ul>
 
@@ -60,9 +60,9 @@
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
                                 <ul class="dropdown-menu" role="menu">
-                                    <li><a href="{{ url('/profile') }}">Profile</a></li>
-                                    <li><a href="{{ url('/category') }}">Category</a></li>
-                                    <li> <a href="{{ route('logout') }}"
+                                    <li><a class="dropdown-item" href="{{ url('/profile') }}">Profile</a></li>
+                                    <li><a class="dropdown-item" href="{{ url('/category') }}">Category</a></li>
+                                    <li> <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }} </a>  </li>
