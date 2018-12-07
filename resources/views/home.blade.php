@@ -57,8 +57,11 @@
                       <div class="col-md-8" id="post">
                           @if(count($posts) > 0 )
                               @foreach($posts->all() as $post)
-                                  <h4>{{$post->post_title}}</h4>
-                                 <img align="middle"  class="img-thumbnail mx-auto d-block" src="{{$post->post_image}}" alt="" width="320px" height="215px">
+                                  <h4 class="text-center">{{$post->post_title}}</h4>
+                                    <figure class="figure">
+                                        <img class="figure-img img-fluid rounded border border-dark" src="{{$post->post_image}}" alt="PostImage">
+                                    </figure>
+
                                 <p>{{ substr($post->post_body, 0, 150 ) }}</p>
 
                               <ul class="nav nav-pills">

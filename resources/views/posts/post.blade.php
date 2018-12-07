@@ -31,7 +31,7 @@
                                   <label for="post_body" class="col-md-4 col-form-label text-md-right">{{ __('Post Body') }}</label>
 
                                   <div class="col-md-6">
-                                      <textarea id="post_body" rows="7" cols="140"  class="form-control{{ $errors->has('post_body') ? ' is-invalid' : '' }}" name="post_body" value="{{ old('post_body') }}" required> </textarea>
+                                      <textarea id="post_body" rows="7" cols="140"  class="form-control form-control-lg {{ $errors->has('post_body') ? ' is-invalid' : '' }}" name="post_body" value="{{ old('post_body') }}" required> </textarea>
 
                                       @if ($errors->has('post_body'))
                                           <span class="invalid-feedback" role="alert">
