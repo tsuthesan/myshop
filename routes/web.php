@@ -25,7 +25,7 @@ Route::post ('/addProfile', 'ProfileController@addProfile');
 Route::post('/addCategory', 'CategoryController@addCategory');
 Route::post('/addPost' , 'PostController@addPost');
 Route::get('/view/{id}' , 'PostController@view');
-Route::get('/edit/{id}' , 'PostController@view');
+Route::get('/edit/{id}' , 'PostController@edit');
 Route::get('/delete/{id}' , 'PostController@view');
-
+Route::post('/editPost/{id}' , 'PostController@editPost');
 

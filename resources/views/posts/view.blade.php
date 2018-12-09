@@ -2,10 +2,10 @@
 <style>
     #post{
         float: right;
-    }
-    #pro{
-        float: left;
-    }
+    }#pro{
+         float: left;
+     }
+
 
 
 </style>
