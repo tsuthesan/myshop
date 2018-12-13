@@ -35,7 +35,7 @@ class HomeController extends Controller
                    ->select('users.*', 'profiles.*')
                    ->where(['profiles.user_id' => $user_id])
                    ->first();
-        $posts = Post::all();
+        $posts = Post::paginate(5);
         return view('home',['profile'=> $profile , 'posts' => $posts]);
     }
 }

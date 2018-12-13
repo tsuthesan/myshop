@@ -26,6 +26,9 @@ Route::post('/addCategory', 'CategoryController@addCategory');
 Route::post('/addPost' , 'PostController@addPost');
 Route::get('/view/{id}' , 'PostController@view');
 Route::get('/edit/{id}' , 'PostController@edit');
-Route::get('/delete/{id}' , 'PostController@view');
+Route::get('/delete/{id}' , 'PostController@deletePost');
 Route::post('/editPost/{id}' , 'PostController@editPost');
+Route::get('/category/{id}' , 'PostController@category');
+//Route::get('/like/{id}' ,'PostController@like');
+
 
