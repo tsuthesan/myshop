@@ -1,10 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
+use DemeterChain\C;
+use function foo\func;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
-//use App\Like;
+use App\Like;
+use App\Dislike;
+use App\Comment;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\URL;
@@ -23,7 +27,7 @@ class PostController extends Controller
         return view('posts.post', ['categories' => $categories,]);
     }
 
-    public function addPost(Request $request)
+        public function addPost(Request $request)
 
     {
 
@@ -53,12 +57,17 @@ class PostController extends Controller
     public function view($post_id)
     {
         $posts = Post::where('id', '=', $post_id)->get();
-       // $likePost = Post::find($post_id);
-        //$likeCtr = Like::where(['post_id' => $likePost->id])->get();
-     //   return $likeCtr;
-     //   exit();
+        $likePost = Post::find($post_id);
+        $likeCtr = Like::where(['post_id'=> $likePost->id])->count();
+        $dislikeCtr = Dislike::where (['post_id' => $likePost ->id])->count();
         $categories = Category::all();
-        return view('posts.view', ['posts' => $posts, 'categories' => $categories]);
+        $comments = DB::table('users')
+            ->join('comments', 'users.id', '=' , 'comments.user_id')
+            ->join('posts', 'comments.post_id' , '=' , 'posts.id')
+            ->select('users.name', 'comments.*')
+            ->where(['posts.id' => $post_id])
+            ->get();
+        return view('posts.view', ['posts' => $posts, 'categories' => $categories, 'likeCtr' => $likeCtr, 'dislikeCtr' => $dislikeCtr ,'comments' => $comments]);
 
     }
 
@@ -122,7 +131,58 @@ class PostController extends Controller
  return view('categories.categoriesposts' , ['categories' => $categories, 'posts' => $posts]);
 
     }
-//       public function like($id){
-//        return  $id;
-//       }
+       public function like($id){
+        $loggedin_user = Auth::user()->id;
+        $like_user = Like::where(['user_id' => $loggedin_user, 'post_id' => $id ])->first();
+        if (empty($like_user -> user_id)) {
+            $user_id = Auth::user()->id;
+            $email = Auth::user()->email;
+            $post_id = $id;
+            $like = new Like;
+            $like->user_id = $user_id;
+            $like->email = $email;
+            $like->post_id = $post_id;
+            $like-> save();
+            return redirect("/view/{$id}");
+        }
+        else{
+            return redirect("/view/{$id}");
+        }
+
+
+       }
+
+    public function dislike($id)
+    {
+        $loggedin_user = Auth::user()->id;
+        $like_user = Dislike::where(['user_id' => $loggedin_user, 'post_id' => $id])->first();
+        if (empty($like_user->user_id)) {
+            $user_id = Auth::user()->id;
+            $email = Auth::user()->email;
+            $post_id = $id;
+            $like = new Dislike;
+            $like->user_id = $user_id;
+            $like->email = $email;
+            $like->post_id = $post_id;
+            $like->save();
+            return redirect("/view/{$id}");
+        } else {
+            return redirect("/view/{$id}");
+        }
+
+
+    }
+    public  function comment ( Request $request, $post_id)
+    {
+       $this-> validate($request,[
+           'comment' => 'required'
+       ]);
+       $comment = new Comment;
+       $comment->user_id = Auth::user()->id;
+       $comment->post_id = $post_id;
+       $comment->comment = $request->input('comment');
+       $comment->save();
+       return redirect("/view/{$post_id}")->with ('response' , ' Comment Added Successfully');
+
+    }
 }

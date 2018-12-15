@@ -29,6 +29,8 @@ Route::get('/edit/{id}' , 'PostController@edit');
 Route::get('/delete/{id}' , 'PostController@deletePost');
 Route::post('/editPost/{id}' , 'PostController@editPost');
 Route::get('/category/{id}' , 'PostController@category');
-//Route::get('/like/{id}' ,'PostController@like');
+Route::get('/like/{id}' ,'PostController@like');
+Route::get('/dislike/{id}' , 'PostController@dislike');
+Route::post('/comment/{id}' , 'PostController@comment');
 
 

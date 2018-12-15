@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<style>
+<style xmlns="http://www.w3.org/1999/html">
     #post{
         float: right;
     }#pro{
@@ -15,7 +15,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8 col-md-2">
+                @if(session('response'))
+                    <div class="alert alert-success">{{session('response')}}</div>
 
+                @endif
 
                 <div class="card">
                     <div class="card-header text-center">Post View </div>
@@ -44,22 +47,42 @@
 
                                     <ul class="nav nav-pills">
                                         <li role="presentation">
-                                            <a href='{{url("/like/{$post->id}")}}'><span  class="fas fa-thumbs-up">Like()</span></a>
+                                            <a href='{{url("/like/{$post->id}")}}'><span  class="fas fa-thumbs-up">Like({{ $likeCtr }})</span></a>
                                         </li>
                                         <li role="presentation">
-                                            <a href='{{url("/dislike/{$post->id}")}}'><span class="fas fa-thumbs-down">Dislike()  </span></a>
+                                            <a href='{{url("/dislike/{$post->id}")}}'><span class="fas fa-thumbs-down">Dislike({{ $dislikeCtr }})  </span></a>
                                         </li>
                                         <li role="presentation">
                                             <a href='{{url("/comment/{$post->id}")}}'><span class="far fa-comment">Comment()</span></a>
                                         </li>
                                     </ul>
-
-
-
                                 @endforeach
                             @else
                                 <p> No Post Available! </p>
                             @endif
+                                <form method="POST" action="{{url("/comment/{$post->id}")}}">
+                                    {{csrf_field()}}
+                                    <div class="form-group">
+                                        <textarea id="comment" rows="6" class="form-control" name="comment" required autofocus> </textarea>
+                                    </div>
+                                    <div class="form-group row mb-0">
+                                        <button type="submit" class="btn btn-success btn-lg btn-block ">
+                                            {{ __('POST COMMENT') }}
+                                        </button>
+                                    </div>
+                                </form>
+                                    <h3>      Comments</h3>
+                                       @if (count($comments) > 0)
+                                           @foreach($comments ->all() as $comment)
+                                           <p>{{ $comment ->comment }}</p>
+                                                <p> Posted by: {{ $comment ->name }}</p>
+                                             <hr/>
+                                           @endforeach
+                                           @else
+                                                 <p>  No Comments  Available! </p>
+                                           @endif
+
+
                         </div>
                     </div>
                 </div>
