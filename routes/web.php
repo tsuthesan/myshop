@@ -18,19 +18,20 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/profile', 'ProfileController@profile')->name('profile');
-Route::get('/post', 'PostController@post')->name('post');
-Route::get ('/category', 'CategoryController@category')->name('category');
-Route::post ('/addProfile', 'ProfileController@addProfile');
-Route::post('/addCategory', 'CategoryController@addCategory');
-Route::post('/addPost' , 'PostController@addPost');
-Route::get('/view/{id}' , 'PostController@view');
-Route::get('/edit/{id}' , 'PostController@edit');
-Route::get('/delete/{id}' , 'PostController@deletePost');
-Route::post('/editPost/{id}' , 'PostController@editPost');
-Route::get('/category/{id}' , 'PostController@category');
-Route::get('/like/{id}' ,'PostController@like');
-Route::get('/dislike/{id}' , 'PostController@dislike');
-Route::post('/comment/{id}' , 'PostController@comment');
+Route::get('/profile', 'ProfileController@profile')->middleware('auth');
+Route::get('/post', 'PostController@post')->middleware('auth');
+Route::get ('/category', 'CategoryController@category')->middleware('auth');
+Route::post ('/addProfile', 'ProfileController@addProfile')->middleware('auth');
+Route::post('/addCategory', 'CategoryController@addCategory')->middleware('auth');
+Route::post('/addPost' , 'PostController@addPost')->middleware('auth');
+Route::get('/view/{id}' , 'PostController@view')->middleware('auth');
+Route::get('/edit/{id}' , 'PostController@edit')->middleware('auth');
+Route::get('/delete/{id}' , 'PostController@deletePost')->middleware('auth');
+Route::post('/editPost/{id}' , 'PostController@editPost')->middleware('auth');
+Route::get('/category/{id}' , 'PostController@category')->middleware('auth');
+Route::get('/like/{id}' ,'PostController@like')->middleware('auth');
+Route::get('/dislike/{id}' , 'PostController@dislike')->middleware('auth');
+Route::post('/comment/{id}' , 'PostController@comment')->middleware('auth');
+Route::post('/search' , 'PostController@search')->middleware('auth');
 
 

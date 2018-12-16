@@ -6,6 +6,7 @@ use function foo\func;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Post;
+use App\profile;
 use App\Like;
 use App\Dislike;
 use App\Comment;
@@ -183,6 +184,18 @@ class PostController extends Controller
        $comment->comment = $request->input('comment');
        $comment->save();
        return redirect("/view/{$post_id}")->with ('response' , ' Comment Added Successfully');
+
+    }
+
+
+    public  function search (Request $request){
+
+       $user_id = Auth::user()->id;
+       $profile = Profile::find($user_id);
+       $keyword = $request->input('search');
+       $posts = Post::where ('post_title', 'LIKE', '%'.$keyword.'%')->get();
+       return view('posts.searchposts', [ 'profile' => $profile, 'posts' => $posts]);
+
 
     }
 }

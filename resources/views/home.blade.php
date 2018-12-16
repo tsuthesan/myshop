@@ -29,7 +29,25 @@
                 <div class="alert alert-success">{{session('response')}}</div>
             @endif
                 <div class="card">
-                 <div class="card-header text-center">Dashboard</div>
+                 <div class="card-header" >
+                 <div class="col-md-4" id="pro"> Dashboard</div>
+                     <div class="col-md-8" id="post">
+                         <form method="POST" action='{{ url("/search") }}'>
+                             {{ csrf_field() }}
+                              <div class="input-group">
+                                  <input type="text" name="search" class="form-control" placeholder="Search for ...">
+                                  <span class="input-group-sm">
+                                      <button type="submit" class=" btn btn-block">
+                                          Go!
+                                      </button>
+                                  </span>
+                              </div>
+                         </form>
+                     </div>
+
+
+
+                 </div>
 
                   <div class="card-body">
                       <div class="col-md-4"  id="pro">
@@ -68,12 +86,14 @@
                                   <li role="presentation">
                                         <a href='{{url("/view/{$post->id}")}}'><span  class="far fa-eye">VIEW</span></a>
                                   </li>
+                                  @if(Auth::id() == 1)
                                   <li role="presentation">
                                       <a href='{{url("/edit/{$post->id}")}}'><span class="far fa-edit">EDIT  </span></a>
                                   </li>
                                   <li role="presentation">
                                       <a href='{{url("/delete/{$post->id}")}}'><span class="far fa-trash-alt">DELETE</span></a>
                                   </li>
+                                      @endif
                               </ul>
 
                                <cite> Posted on: {{date ('M j, Y H:i', strtotime($post->updated_at))}}</cite>
