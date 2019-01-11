@@ -83,15 +83,15 @@
                                 <p>{{ substr($post->post_body, 0, 150 ) }}</p>
 
                               <ul class="nav nav-pills">
-                                  <li role="presentation">
-                                        <a href='{{url("/view/{$post->id}")}}'><span  class="far fa-eye">VIEW</span></a>
+                                  <li role="presentation" class="nav-item">
+                                        <a class="nav-link" href='{{url("/view/{$post->id}")}}'><span  class="far fa-eye">VIEW</span></a>
                                   </li>
                                   @if(Auth::id() == 1)
-                                  <li role="presentation">
-                                      <a href='{{url("/edit/{$post->id}")}}'><span class="far fa-edit">EDIT  </span></a>
+                                  <li role="presentation" class="nav-item">
+                                      <a class="nav-link" href='{{url("/edit/{$post->id}")}}'><span class="far fa-edit">EDIT  </span></a>
                                   </li>
-                                  <li role="presentation">
-                                      <a href='{{url("/delete/{$post->id}")}}'><span class="far fa-trash-alt">DELETE</span></a>
+                                  <li role="presentation" class="nav-item">
+                                      <a class="nav-link" href='{{url("/delete/{$post->id}")}}'><span class="far fa-trash-alt">DELETE</span></a>
                                   </li>
                                       @endif
                               </ul>
